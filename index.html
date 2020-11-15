@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BD-Bank</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+        <div id="login-page">
+            <h1 class="text-center">Welcome to BD-Bank</h1>
+             <div class="submit">
+                    <h4>Login</h4>
+                    <input class="form-control" type="text"  placeholder="E-mail" name="" id="">
+                     <br>
+                    <input class="form-control" type="password" placeholder="password" >
+                    <br>
+                     <button id="visited" class="btn btn-success"> Login</button>
+             </div>
+        </div>
+
+        <div id="tran">
+              <div class="row">
+                  <div class="col-md-4">
+                     <div class="deposit status">
+                        <h5>Deposit</h5>
+                        <h2>$ <span id="currant">00</span></h2>
+                     </div>
+                  </div>
+                  <div class="col-md-4 ">
+                     <div class="withdraw status ">
+                        <h5>Withdraw</h5>
+                        <h2>$ <span id="currantewithdraw">00</span></h2>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="balance status">
+                        <h5>Balance</h5>
+                        <h2>$ <span id="balance-1"> 00</span></h2>
+                     </div>
+                  </div>
+              </div>
+             <div class="row">
+                 <div class="col-md-6  ">
+                     <div class="submit">
+                        <h4>Deposit</h4>
+                        <input id="depositAmount" class="form-control" type="text" placeholder="$ Deposit" id="">
+                        <br>
+                        <button id="depositAdd" class="btn btn-success"> Deposit</button>
+                     </div>
+                 </div>
+                 <div class="col-md-6  ">
+                       <div class="submit">
+                        <h4>Withdraw</h4>
+                        <input id="withdrawAmount" class="form-control" type="text" placeholder=" $ withdraw" id="">
+                        <br>
+                        <button id="withdraw" class=" btn  btn-success"> Withdraw</button>
+                       </div>
+                 </div>
+             </div>
+
+        </div>
+    
+           <footer> Majharul islam</footer>
+   
+           
+
+        <script>
+             const visit = document.getElementById('visited');
+              visit.addEventListener('click',function(){
+                    const login = document.getElementById('login-page');
+                    login.style.display= 'none';
+                    const second = document.getElementById('tran');
+                     second.style.display='block';
+              })
+
+
+
+              const depo = document.getElementById('depositAdd');
+                depo.addEventListener('click',function(){
+                       const number = getInto ('depositAmount');
+                
+                    updateText('currant',number);
+                       
+                      updateText ('balance-1',number);
+
+                        document.getElementById('depositAmount').value="";
+                })
+                
+                function updateText(id,number){
+                    const balance = document.getElementById(id).innerText;
+                       const numberOne = parseFloat(balance);
+                       const newtotal  = numberOne+number;
+                       document.getElementById(id).innerText = newtotal;
+                }
+
+                const withdraw  = document.getElementById('withdraw');
+                withdraw.addEventListener('click',function(){
+                        const newOf = getInto('withdrawAmount');
+                        updateText ('currantewithdraw',newOf);
+
+                        updateText('balance-1',-1* newOf);
+                        document.getElementById('withdrawAmount').value="";
+                })
+                
+                function getInto (id){
+                    const amount = document.getElementById(id).value;
+                        const newOf = parseFloat(amount);
+                        return newOf;
+                }
+                 
+                  
+        </script>
+</body>
+</html>
